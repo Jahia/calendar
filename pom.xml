@@ -47,9 +47,8 @@
         <version>6.7.0.0-SNAPSHOT</version>
     </parent>
     <version>2.0.0-SNAPSHOT</version>
-    <groupId>org.jahia.modules</groupId>
     <artifactId>calendar</artifactId>
     <name>Jahia Calendar</name>
     <packaging>bundle</packaging>
-    <description>These are the custom module for running on a Jahia server.</description>
+    <description>These are the custom module (Jahia Calendar) for running on a Jahia server.</description>
 </project>
