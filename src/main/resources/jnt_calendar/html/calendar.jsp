@@ -22,8 +22,14 @@
 <template:addResources type="javascript" resources="fullcalendar.js"/>
 <template:addResources type="javascript" resources="i18n/calendar-${renderContext.mainResourceLocale}.js"/>
 <c:set var="linked" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
+
+<c:if test="${empty linked or linked eq 'null'}">
+    <c:set var="linked" value="${renderContext.mainResource.node}"/>
+</c:if>
+
 <template:addCacheDependency node="${linked}"/>
 <template:addCacheDependency flushOnPathMatchingRegexp="${linked.path}/.*"/>
+
 <c:forEach items="${linked.nodes}" var="linkedChild" varStatus="status">
     <fmt:formatDate pattern="yyyy-MM-dd"
                     value="${linkedChild.properties[currentNode.properties.startDateProperty.string].date.time}"
