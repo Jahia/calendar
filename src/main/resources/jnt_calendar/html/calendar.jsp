@@ -23,12 +23,17 @@
 <template:addResources type="javascript" resources="i18n/calendar-${renderContext.mainResourceLocale}.js"/>
 <c:set var="linked" value="${ui:getBindedComponent(currentNode, renderContext, 'j:bindedComponent')}"/>
 
-<c:if test="${empty linked or linked eq 'null'}">
-    <c:set var="linked" value="${renderContext.mainResource.node}"/>
-</c:if>
-
-<template:addCacheDependency node="${linked}"/>
-<template:addCacheDependency flushOnPathMatchingRegexp="${linked.path}/.*"/>
+<c:choose>
+    <c:when test="${not empty linked}">
+        <template:addCacheDependency node="${linked}"/>
+        <template:addCacheDependency flushOnPathMatchingRegexp="${linked.path}/.*"/>
+    </c:when>
+    <c:otherwise>
+        <c:if test="${renderContext.editMode && !renderContext.settings.productionMode}">
+            <fmt:message key="jahiaCalendar.not.bound"/>
+        </c:if>
+    </c:otherwise>
+</c:choose>
 
 <c:forEach items="${linked.nodes}" var="linkedChild" varStatus="status">
     <fmt:formatDate pattern="yyyy-MM-dd"
