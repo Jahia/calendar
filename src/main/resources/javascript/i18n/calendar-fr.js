@@ -40,5 +40,5 @@ var i18nDefaults = {
     firstDay:0 // Lundi premier jour de la semaine
 };
 
-jQuery.fullCalendar.setDefaults(i18nDefaults);
+//jQuery.fullCalendar.setDefaults(i18nDefaults);
 
