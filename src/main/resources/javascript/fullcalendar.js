@@ -289,7 +289,7 @@
 
 
         function destroy() {
-            $(window).unbind('resize', windowResize);
+            $(window).off('resize', windowResize);
             header.destroy();
             content.remove();
             element.removeClass('fc fc-rtl ui-widget');
@@ -652,7 +652,7 @@
 
         if (options.droppable) {
             $(document)
-                .bind('dragstart', function(ev, ui) {
+                .on('dragstart', function(ev, ui) {
                     var _e = ev.target;
                     var e = $(_e);
                     if (!e.parents('.fc').length) { // not already inside a calendar
@@ -663,7 +663,7 @@
                         }
                     }
                 })
-                .bind('dragstop', function(ev, ui) {
+                .on('dragstop', function(ev, ui) {
                     if (_dragElement) {
                         currentView.dragStop(_dragElement, ev, ui);
                         _dragElement = null;
@@ -1703,7 +1703,7 @@
 
 
     function lazySegBind(container, segs, bindHandlers) {
-        container.unbind('mouseover').mouseover(function(ev) {
+        container.off('mouseover').mouseover(function(ev) {
             var parent=ev.target, e,
                 i, seg;
             while (parent != this) {
@@ -1859,7 +1859,7 @@
         element
             .attr('unselectable', 'on')
             .css('MozUserSelect', 'none')
-            .bind('selectstart.ui', function() { return false; });
+            .on('selectstart.ui', function() { return false; });
     }
 
 
@@ -5079,7 +5079,7 @@
         function clearOverlays() {
             var e;
             while (e = usedOverlays.shift()) {
-                unusedOverlays.push(e.hide().unbind());
+                unusedOverlays.push(e.hide().off());
             }
         }
 
@@ -5148,7 +5148,7 @@
             coordinateGrid.build();
             mouse(ev);
             bindType = _bindType || 'mousemove';
-            $(document).bind(bindType, mouse);
+            $(document).on(bindType, mouse);
         };
 
 
@@ -5170,7 +5170,7 @@
 
 
         t.stop = function() {
-            $(document).unbind(bindType, mouse);
+            $(document).off(bindType, mouse);
             return cell;
         };
 
