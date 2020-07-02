@@ -27,6 +27,23 @@
     <c:when test="${not empty linked}">
         <template:addCacheDependency node="${linked}"/>
         <template:addCacheDependency flushOnPathMatchingRegexp="${linked.path}/.*"/>
+
+        <c:forEach items="${linked.nodes}" var="linkedChild"
+            varStatus="status">
+            <fmt:formatDate pattern="yyyy-MM-dd"
+                value="${linkedChild.properties[currentNode.properties.startDateProperty.string].date.time}"
+                var="startDate" />
+            <c:choose>
+                <c:when test="${empty datas[startDate]}">
+                    <c:set target="${datas}" property="${startDate}"
+                        value="1" />
+                </c:when>
+                <c:otherwise>
+                    <c:set target="${datas}" property="${startDate}"
+                        value="${datas[startDate]+1}" />
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
     </c:when>
     <c:otherwise>
         <c:if test="${renderContext.editMode && !renderContext.settings.productionMode}">
@@ -35,19 +52,6 @@
     </c:otherwise>
 </c:choose>
 
-<c:forEach items="${linked.nodes}" var="linkedChild" varStatus="status">
-    <fmt:formatDate pattern="yyyy-MM-dd"
-                    value="${linkedChild.properties[currentNode.properties.startDateProperty.string].date.time}"
-                    var="startDate"/>
-    <c:choose>
-        <c:when test="${empty datas[startDate]}">
-            <c:set target="${datas}" property="${startDate}" value="1"/>
-        </c:when>
-        <c:otherwise>
-            <c:set target="${datas}" property="${startDate}" value="${datas[startDate]+1}"/>
-        </c:otherwise>
-    </c:choose>
-</c:forEach>
 <script type="text/javascript">
     function MergeJSON(o, ob) {
         for (var z in ob) {
