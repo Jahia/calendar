@@ -9,7 +9,7 @@
 
         Copyright (C) 2002-2020 Jahia Solutions Group SA. All rights reserved.
 
-        THIS FILE IS AVAILABLE UNDER TWO DIFFERENT LICENSES:
+        THIS FILE IS AVAILABLE UN	DER TWO DIFFERENT LICENSES:
         1/GPL OR 2/JSEL
 
         1/ GPL
@@ -64,7 +64,7 @@
   </scm>
 
   <properties>
-    <jahia-module-signature>MCwCFBBDW2wxwy4sPNwfpCmEgOGRWrReAhQHfrsllN5SR/j7G8q53MumOZSOJw==</jahia-module-signature>
+    <jahia-module-signature>MCwCFCvtCnfPUTb75nAhh3dI4Amc9mLyAhQUImVm7QGU4Db1Pj2uocaS27oW6A==</jahia-module-signature>
   </properties>
 
   <repositories>
